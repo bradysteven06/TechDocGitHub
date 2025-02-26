@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git & GitHub Documentation</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+    <nav id="navbar">
+        <header>Git & GitHub Documentation</header>
+        <ul>
+            <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+            <li><a class="nav-link" href="#Getting_Started_with_Git">Getting Started with Git</a></li>
+            <li><a class="nav-link" href="#Basic_Git_Commands">Basic Git Commands</a></li>
+            <li><a class="nav-link" href="#Branching_and_Merging">Branching and Merging</a></li>
+            <li><a class="nav-link" href="#Working_with_GitHub">Working with GitHub</a></li>
+            <li><a class="nav-link" href="#Advanced_Git_Features">Advanced Git Features</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-doc">
+        <section class="main-section" id="Introduction">
+            <header>Introduction</header>
+            <p>Git is a distributed version control system that helps developers track changes in code, collaborate with others, and manage software projects efficiently.</p>
+            <p>GitHub is a cloud-based platform that hosts Git repositories, making it easier to collaborate with teams and contribute to open-source projects.</p>
+            <p>To use Git, you need to install it on your system. See the next section for installation instructions.</p>
+        </section>
+
+        <section class="main-section" id="Getting_Started_with_Git">
+            <header>Getting Started with Git</header>
+            <p>Before using Git, you need to install it on your system:</p>
+            <ul>
+                <li><strong>Windows:</strong> Download and install Git from <a href="https://git-scm.com/downloads" target="_blank">git-scm.com</a>.</li>
+                <li><strong>Mac:</strong> Install Git using Homebrew: <code>brew install git</code>.</li>
+                <li><strong>Linux:</strong> Install Git via the package manager: <code>sudo apt install git</code> (Debian/Ubuntu) or <code>sudo dnf install git</code> (Fedora).</li>
+            </ul>
+            <p>Once installed, verify Git is working by running:</p>
+            <code>git --version</code>
+            <p>This should return the installed version of Git.</p>
+        </section>
+        
+
+        <section class="main-section" id="Basic_Git_Commands">
+            <header>Basic Git Commands</header>
+            <p>Here are some fundamental Git commands:</p>
+            <ul>
+                <li>`git init` - Initializes a new Git repository.</li>
+                <li>`git add` - Stages changes for commit.</li>
+                <li>`git commit -m "message"` - Saves changes with a message.</li>
+            </ul>
+            <code># Initializing a Git repository</code>
+            <code>git init</code>
+        </section>
+
+        <section class="main-section" id="Branching_and_Merging">
+            <header>Branching and Merging</header>
+            <p>Branches allow you to work on different features independently.</p>
+            <ul>
+                <li>Create a new branch with `git branch feature-branch`.</li>
+                <li>Switch to a branch with `git checkout feature-branch`.</li>
+                <li>Merge branches with `git merge feature-branch`.</li>
+            </ul>
+            <code># Creating a new branch</code>
+            <code>git branch feature-branch</code>
+        </section>
+
+        <section class="main-section" id="Working_with_GitHub">
+            <header>Working with GitHub</header>
+            <p>GitHub allows developers to store and collaborate on repositories online.</p>
+            <ul>
+                <li>`git push` - Uploads local commits to GitHub.</li>
+                <li>`git pull` - Fetches updates from a remote repository.</li>
+            </ul>
+            <code># Pushing changes to GitHub</code>
+            <code>git push origin main</code>
+        </section>
+
+        <section class="main-section" id="Advanced_Git_Features">
+            <header>Advanced Git Features</header>
+            
+            <p>Git provides powerful features that help developers manage complex projects efficiently. Some of the most useful advanced commands include rebasing, stashing, cherry-picking, and Git hooks.</p>
+        
+            <h3>Rebasing</h3>
+            <p>Rebasing allows you to integrate changes from one branch into another by rewriting commit history. Unlike merging, which creates a new commit, rebasing moves commits on top of the latest branch.</p>
+            <code># Rebase your feature branch onto the main branch</code>
+            <code>git checkout feature-branch</code>
+            <code>git rebase main</code>
+            <p>If conflicts occur, resolve them, then continue with:</p>
+            <code>git rebase --continue</code>
+        
+            <h3>Stashing</h3>
+            <p>Stashing allows you to temporarily save changes without committing them, so you can switch branches or pull updates without losing work.</p>
+            <code># Stash your changes</code>
+            <code>git stash</code>
+            <p>To list stashed changes:</p>
+            <code>git stash list</code>
+            <p>To apply the most recent stash:</p>
+            <code>git stash apply</code>
+            <p>To remove a stash after applying it:</p>
+            <code>git stash drop</code>
+        
+            <h3>Cherry-Picking</h3>
+            <p>Cherry-picking allows you to apply specific commits from one branch to another.</p>
+            <code># Cherry-pick a specific commit by its hash</code>
+            <code>git cherry-pick 3a5b6c7</code>
+            <p>Use this when you want to apply only a particular fix or feature without merging an entire branch.</p>
+        
+            <h3>Git Hooks</h3>
+            <p>Git Hooks are custom scripts that run automatically before or after Git commands like commits, merges, and pushes.</p>
+            <code># Create a pre-commit hook (Linux/macOS)</code>
+            <code>nano .git/hooks/pre-commit</code>
+            <p>Add a script inside the file (e.g., prevent commits with 'WIP' in the message):</p>
+            <code>
+                #!/bin/sh
+                if git log -1 --pretty=%B | grep -i "WIP"; then
+                    echo "Error: You cannot commit with 'WIP' in the message."
+                    exit 1
+                fi
+            </code>
+            <p>Save the file and make it executable:</p>
+            <code>chmod +x .git/hooks/pre-commit</code>
+            <p>Now, this script will prevent commits with "WIP" in the message.</p>
+        
+            <h3>Squashing Commits</h3>
+            <p>Squashing allows you to combine multiple commits into one before merging.</p>
+            <code># Interactive rebase to squash commits</code>
+            <code>git rebase -i HEAD~3</code>
+            <p>Replace "pick" with "squash" for the commits you want to combine, then save and exit.</p>
+        
+            <h3>Managing Remote Repositories</h3>
+            <p>Sometimes, you may need to change the remote URL or work with multiple remotes.</p>
+            <code># Change the remote repository URL</code>
+            <code>git remote set-url origin https://github.com/your-username/new-repo.git</code>
+            <p>To add a new remote repository:</p>
+            <code>git remote add upstream https://github.com/original-repo.git</code>
+        
+        </section>
+        
+    </main>
+</body>
+</html>

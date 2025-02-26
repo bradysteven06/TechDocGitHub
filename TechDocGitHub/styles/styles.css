@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    display: flex;
+    margin: 0;
+}
+
+/* Sidebar Navigation */
+#navbar {
+    width: 250px;
+    background: #333;
+    color: white;
+    height: 100vh; /* Full height */
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+}
+
+#navbar header {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#navbar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#navbar ul li {
+    margin: 10px 0;
+}
+
+#navbar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+}
+
+#navbar ul li a:hover {
+    background: #555;
+}
+
+/* Main Content */
+#main-doc {
+    margin-left: 270px;
+    padding: 20px;
+    flex: 1;
+}
+
+.main-section {
+    margin-bottom: 40px;
+}
+
+/* Code block styling */
+code {
+    background: #f4f4f4;
+    padding: 5px;
+    display: block;
+    margin: 10px 0;
+    font-family: monospace;
+}
+
+/* 📱 Responsive Media Query */
+@media (max-width: 768px) {
+    /* Navbar becomes a top navigation bar on smaller screens */
+    #navbar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 10px;
+        text-align: center;
+    }
+
+    #navbar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+    }
+
+    #navbar ul li {
+        margin: 5px;
+    }
+
+    #navbar ul li a {
+        padding: 8px 12px;
+        display: inline-block;
+    }
+
+    /* Ensure main content is properly positioned */
+    #main-doc {
+        margin-left: 0;
+        padding: 15px;
+    }
+}
